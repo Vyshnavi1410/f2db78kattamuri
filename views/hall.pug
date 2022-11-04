@@ -1,0 +1,15 @@
+extends layout
+
+block content
+  h1= title
+  - let results=[{hall_name:"PVP",hall_rent:8000,hall_size:100},{hall_name:"PVR",hall_rent:6000,hall_size:90},{hall_name:"AMB",hall_rent:6000,hall_size:150}]
+  div(class="container-fluid")
+  div(class="row")
+   each value,index in results
+    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
+   script.
+    function buy(index)
+    {
+      alert(`Your purchased Item ${index+1}`)
+    }
+
