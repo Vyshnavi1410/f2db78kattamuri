@@ -1,4 +1,17 @@
 var hall = require('../models/hall');
+
+// List of all halls
+exports.hall_list = async function(req, res) {
+    try{
+    theHalls = await hall.find();
+    res.send(theHalls);
+    }
+    catch(err){
+    res.status(500);
+    res.send(`{"error": ${err}}`);
+    }
+   };
+
 // List of all hall
 exports.hall_list = function(req, res) {
  res.send('NOT IMPLEMENTED: Hall list');
