@@ -1,9 +1,7 @@
 var express = require('express');
+const hall_controlers= require('../controllers/hall');
 var router = express.Router();
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-  res.render('hall', { title: 'Search Results By Hall' });
-});
-
+/* GET halls. */
+router.get('/', hall_controlers.hall_view_all_Page );
 module.exports = router;
