@@ -12,14 +12,18 @@ exports.hall_list = async function(req, res) {
     }
    };
 
-/*// List of all hall
-exports.hall_list = function(req, res) {
- res.send('NOT IMPLEMENTED: Hall list');
-};*/
+
 // for a specific Hall.
-exports.hall_detail = function(req, res) {
- res.send('NOT IMPLEMENTED: Hall detail: ' + req.params.id);
-};
+exports.hall_detail = async function(req, res) {
+    console.log("detail" + req.params.id)
+    try {
+    result = await hall.findById( req.params.id)
+    res.send(result)
+    } catch (error) {
+    res.status(500)
+    res.send(`{"error": document for id ${req.params.id} not found`);
+    }
+   };
 
 // Handle Hall create on POST.
 exports.hall_create_post = async function(req, res) {
@@ -46,8 +50,24 @@ exports.hall_delete = function(req, res) {
  res.send('NOT IMPLEMENTED: Hall delete DELETE ' + req.params.id);
 };
 // Handle Hall update form on PUT.
-exports.hall_update_put = function(req, res) {
- res.send('NOT IMPLEMENTED: Hall update PUT' + req.params.id);
+exports.hall_update_put = async function(req, res) {
+ console.log(`update on id ${req.params.id} with body
+${JSON.stringify(req.body)}`)
+ try {
+ let toUpdate = await hall.findById( req.params.id)
+ // Do updates of properties
+ if(req.body.hall_name)
+ toUpdate.hall_name = req.body.hall_name;
+ if(req.body.hall_rent) toUpdate.hall_rent = req.body.hall_rent;
+ if(req.body.hall_size) toUpdate.hall_size = req.body.hall_size;
+ let result = await toUpdate.save();
+ console.log("Sucess " + result)
+ res.send(result)
+ } catch (err) {
+ res.status(500)
+ res.send(`{"error": ${err}: Update for id ${req.params.id}
+failed`);
+ }
 };
 
 // VIEWS
