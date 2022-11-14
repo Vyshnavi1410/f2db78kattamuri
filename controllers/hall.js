@@ -46,9 +46,19 @@ exports.hall_create_post = async function(req, res) {
     } 
 };
 // Handle Hall delete form on DELETE.
-exports.hall_delete = function(req, res) {
- res.send('NOT IMPLEMENTED: Hall delete DELETE ' + req.params.id);
-};
+exports.hall_delete = async function(req, res) {
+    console.log("delete " + req.params.id)
+    try {
+    result = await hall.findByIdAndDelete( req.params.id)
+    console.log("Removed " + result)
+    res.send(result)
+    } catch (err) {
+    res.status(500)
+    res.send(`{"error": Error deleting ${err}}`);
+    }
+   };
+
+
 // Handle Hall update form on PUT.
 exports.hall_update_put = async function(req, res) {
  console.log(`update on id ${req.params.id} with body
@@ -82,4 +92,6 @@ exports.hall_view_all_Page = async function(req, res) {
     res.send(`{"error": ${err}}`);
     }
    };
+
+
    
