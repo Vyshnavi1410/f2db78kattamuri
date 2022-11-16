@@ -1,0 +1,20 @@
+extends layout
+block content
+ h1= title
+ - let hallid = toShow._id
+ - let hall_hall_name = toShow.hall_name
+ - let hall_hall_rent = toShow.hall_rent
+ - let hall_hall_size = toShow.hall_rent
+ div
+    div.row
+      div(class='hallAttr mr-3') Hall ID is:
+      div #{hallid}
+    div.row
+      div(class='hallAttr mr-3') Hall Type is:
+      div #{hall_hall_name}
+    div.row
+      div(class='hallAttr mr-3') Hall Size is:
+      div #{hall_hall_size}
+    div.row
+      div(class='hallAttr mr-3') Hall Cost is:
+      div #{hall_hall_rent}

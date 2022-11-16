@@ -27,6 +27,7 @@ var hallRouter = require('./routes/hall');
 var gridbuildRouter = require('./routes/gridbuild');
 var selectorRouter = require('./routes/selector');
 var resourceRouter = require('./routes/resource');
+//var halldetailRouter = require('./routes/halldetail');
 var app = express();
 
 // view engine setup
