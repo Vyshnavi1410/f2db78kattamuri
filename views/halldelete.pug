@@ -1,0 +1,53 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  if (toShow == null) 
+    h2 No instance to delete 
+  else 
+    - let hallid = toShow._id 
+    - let hall_name = toShow.hall_name
+    - let hall_size = toShow.hall_size
+    - let hall_rent = toShow.hall_rent 
+    - let actionid = "/resource/halls/" + hallid 
+    script let actionid = "#{actionid}" 
+    div 
+      div.row 
+        div(class='hallAttr mr-3') Hall ID is: 
+        div #{hallid} 
+      div.row 
+        div(class='hallAttr mr-3') Hall Name is: 
+        div #{hall_name} 
+      div.row 
+        div(class='hallAttr mr-3') Hall Size is: 
+        div #{hall_size} 
+      div.row 
+        div(class='hallAttr mr-3') Hall Cost is: 
+        div #{hall_rent} 
+ 
+    button(class="btn btn-danger m-2" onclick="deleteOnid()") Delete 
+    button(class="btn btn-secondary m-2" onclick="cancel()") Cancel 
+ 
+  script. 
+    function cancel() { 
+      // Go back to the home page for the hall collection 
+      window.location.href='/hall' 
+    } 
+  script. 
+    function deleteOnid() { 
+      console.log("starting delete") 
+      // delete first 
+      fetch(actionid, { 
+        method: 'DELETE'   
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Delete succeded") 
+        window.location.href='/hall' 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Delete failed " + error ) 
+      }); 
+    }
