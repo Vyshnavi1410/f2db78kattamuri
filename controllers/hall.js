@@ -122,4 +122,18 @@ exports.hall_create_Page = function(req, res) {
     res.send(`{'error': '${err}'}`);
     }
    };
+
+// Handle building the view for updating a hall.
+// query provides the id
+exports.hall_update_Page = async function(req, res) {
+    console.log("update view for item "+req.query.id)
+    try{
+    let result = await hall.findById(req.query.id)
+    res.render('hallupdate', { title: 'Hall Update', toShow: result });
+    }
+    catch(err){
+    res.status(500)
+    res.send(`{'error': '${err}'}`);
+    }
+   };
    

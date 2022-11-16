@@ -1,0 +1,43 @@
+extends layout 
+ 
+block content 
+  h1= title 
+ 
+  - let hallid = toShow._id 
+  - let hall_name = toShow.hall_name
+  - let hall_size = toShow.hall_size
+  - let hall_rent = toShow.hall_rent 
+   
+  div.row(class='mb-2') 
+    div.mr-1 ID is 
+    div #{hallid} 
+  - let actionid = "/resource/halls/" + hallid 
+  form(id='hallForm', action= actionid, method="PUT") 
+    div.form-group 
+        label.hallAttr(for='hall_name') Hall name 
+        input#hall_name(type='text', name='hall_name', value= hall_name ) 
+    div.form-group 
+        label.hallAttr(for='hall_size') Hall size 
+        input#hall_size(type='number', name='hall_size', value= hall_size ) 
+    div.form-group 
+        label.hallAttr(for='hall_rent') Hall cost 
+        input#hall_rent(type='number', name='hall_rent', value= hall_rent ) 
+    input(type="submit") 
+ 
+  script. 
+    document.forms['hallForm'].addEventListener('submit', (event) => { 
+      event.preventDefault(); 
+      // TODO do something here to show user that form is being submitted 
+      fetch(event.target.action, { 
+        method: 'PUT', 
+        body: new URLSearchParams(new FormData(event.target)) // event.target is the form 
+      }).then((resp) => { 
+        return resp.json(); // or resp.text() or whatever the server sends 
+      }).then((body) => { 
+        alert("Update succeded") 
+        // TODO handle body 
+      }).catch((error) => { 
+        // TODO handle error 
+        alert("Update failed " + error ) 
+      }); 
+    });
