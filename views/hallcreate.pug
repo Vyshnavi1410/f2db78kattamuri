@@ -5,15 +5,15 @@ block content
  
   form(id='hallForm', action="/resource/halls", method="POST") 
     div.form-group 
-        label.hallAttr(for='hall_name') Hall Name
+        label.hallbonusAttr(for='hall_name') Hall Name
         input#hall_name(type='text', name='hall_name') 
     div.form-group 
-        label.hallAttr(for='hall_size') Hall size 
+        label.hallbonusAttr(for='hall_size') Hall size 
         input#hall_size(type='number', name='hall_size') 
     div.form-group 
-        label.hallAttr(for='hall_rent') Hall cost 
+        label.hallbonusAttr(for='hall_rent') Hall cost 
         input#hall_rent(type='number', name='hall_rent') 
-    input(type="submit") 
+    button(class="btn btn-danger m-2") Submit
  
   script. 
     document.forms['hallForm'].addEventListener('submit', (event) => { 
