@@ -21,11 +21,13 @@ a {
   text-align: center;
  }
 
+ /**
  h1{
   font-style:italic;
   text-align: center;
   background-color: chartreuse;
  }
+ **/
 
  #hallForm{
   border-radius: 50%;

@@ -4,11 +4,16 @@ block content
   h1= title
   - let result  = results;
   div(class="container-fluid")
-  div(class="row")
+  div(class="row m-1")
    each value,index in results
-    div(class="col-sm-2" onclick=`buy(${index})`)  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
+    - let destination = `buy(\"/hall/update?id=${value._id}\")`
+    //-div(class="col-sm-2" onclick=`buy(${index})`)  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
+    div(class="row-sm-2", class="m-1" )  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
+      button.btn(class="btn-primary m1-1", onclick=destination) Update
    script.
-    function buy(index)
+    function buy(path)
     {
-      alert(`Your purchased Item ${index+1}`)
+      //-alert(`Your purchased Item ${index+1}`)
+      window.location.href=path 
     }
+
