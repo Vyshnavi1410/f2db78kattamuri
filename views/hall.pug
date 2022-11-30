@@ -2,18 +2,25 @@ extends layout
 
 block content
   h1= title
+  - let create = `dispatch(\"/hall/create\")` 
+  button.btn(class="btn-primary m1-1", onclick=create) Create 
   - let result  = results;
   div(class="container-fluid")
   div(class="row m-1")
    each value,index in results
     - let destination = `buy(\"/hall/update?id=${value._id}\")`
+    - let detail = `buy(\"/hall/detail?id=${value._id}\")`
+    - let delet = `buy(\"/hall/delete?id=${value._id}\")`
     //-div(class="col-sm-2" onclick=`buy(${index})`)  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
     div(class="row-sm-2", class="m-1" )  #{value.hall_name}, #{value.hall_rent}, #{value.hall_size}
       button.btn(class="btn-primary m1-1", onclick=destination) Update
+      button.btn(class="btn-primary m1-1", onclick=detail) Detail
+      button.btn(class="btn-primary m1-1", onclick= delet) Delete
    script.
     function buy(path)
     {
       //-alert(`Your purchased Item ${index+1}`)
       window.location.href=path 
     }
+
 
