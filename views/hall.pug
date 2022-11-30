@@ -2,7 +2,7 @@ extends layout
 
 block content
   h1= title
-  - let create = `dispatch(\"/hall/create\")` 
+  - let create = `buy(\"/hall/create\")` 
   button.btn(class="btn-primary m1-1", onclick=create) Create 
   - let result  = results;
   div(class="container-fluid")
